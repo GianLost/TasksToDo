@@ -38,7 +38,7 @@ const style = StyleSheet.create({
     tasksView: {
         borderWidth: 3,
         width: '90%',
-        marginTop: 30,
+        marginTop: 10,
         height: 200
 
     },

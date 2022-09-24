@@ -9,9 +9,11 @@ import {
 class HeaderComponent extends Component {
     render() {
         return (
-            <View style={style.headerComponentView}>
-                <Icon name="checkcircle" size={35} color='#fff' />
-                <Text style={style.headerComponentText}>Tasks.To-Do</Text>
+            <View>
+                <View style={style.headerComponentView}>
+                    <Icon name="checkcircle" size={35} color='#fff' />
+                    <Text style={style.headerComponentText}>Tasks.To-Do</Text>
+                </View>
             </View>
         )
     }
@@ -24,7 +26,8 @@ const style = StyleSheet.create({
         padding: 5,
         backgroundColor: '#12122b',
         alignItems: 'center',
-        height: 60
+        height: 60,
+        width: '100%'
     },
 
     headerComponentText: {
