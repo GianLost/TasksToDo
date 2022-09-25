@@ -135,7 +135,7 @@ export default class ItemDatabase {
             this.Conectar().then((db) => {
                 db.transaction((tx) => {
                     //Query SQL para deletar um item da base de dados    
-                    tx.executeSql('DELETE FROM Item WHERE Id = ?', [id]).then(([tx, results]) => {
+                    tx.executeSql('DELETE FROM TaskListItem WHERE id = ?', [id]).then(([tx, results]) => {
                         console.log(results);
                         resolve(results);
                     });

@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import HeaderComponent from "./src/Components/HeaderComponent";
 import TaskComponent from "./src/Components/TaskComponent";
 import {
-  StyleSheet,
   ImageBackground,
-  TouchableOpacity,
-  Text,
   View,
-  TextInput,
   ScrollView,
 } from 'react-native';
 
@@ -15,10 +11,10 @@ import {
 class App extends Component {
 
   render() {
-    let backGroundImage = require('./src/Images/lista-de-tarefas.jpg')
+    let backGroundImage = require('./src/Images/background1.jpg')
     return (
-      <View style={{ width: '100%', height: '100%', alignItems: 'center' }}>
-        <ImageBackground source={require('./src/Images/lista-de-tarefas.jpg')} imageStyle={{ opacity: 0.4 }}>
+      <View style={{ width: '100%', height: '100%', alignItems: 'center'}}>
+        <ImageBackground source={require('./src/Images/background1.jpg')} imageStyle={{ opacity: 0.88 }}>
           <View>
             <HeaderComponent />
           </View>
