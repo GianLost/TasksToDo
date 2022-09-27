@@ -9,6 +9,42 @@ import {
 
 class TaskList extends Component {
 
+    getStats() {
+        let endDateSplit = this.props.endDate.split('/');
+        let endDatePart = new Date(endDateSplit[2], endDateSplit[1] - 1 , endDateSplit[0]);
+        
+        if (this.props.stats == '' &&  endDatePart < new Date()) {
+            this.props.stats = 'Atrasada'
+            return { color: 'red',
+            fontSize: 17,
+            marginLeft: 15,
+            borderBottomWidth: 2,
+            borderBottomColor: '#fff',
+            padding: 3}
+        }else if(this.props.stats == '' && endDatePart > new Date()){
+            this.props.stats = 'Pendente'
+            return { 
+                color: '#000',
+                fontSize: 17,
+                textShadowColor: '#fff',
+                textShadowRadius: 10,
+                marginLeft: 15,
+                borderBottomWidth: 2,
+                borderBottomColor: '#fff',
+                padding: 3}
+        }else if (this.props.stats != 'Atrasada' || this.props.stats != 'Pendente') {
+            return { 
+                color: 'green',
+                fontSize: 17,
+                textShadowColor: '#000',
+                textShadowRadius: 5,
+                marginLeft: 15,
+                borderBottomWidth: 2,
+                borderBottomColor: '#fff',
+                padding: 3}
+        }
+    }
+
     render() {
         return (
             <View style={{ width: '100%', maxHeight: '100%', alignItems: 'center', margin: 10 }}>
@@ -28,12 +64,16 @@ class TaskList extends Component {
                         <Text style={style.inputTextTaskList}>° Prioridade:</Text>
                         <Text style={style.TextTaskList}>{this.props.priority}</Text>
                     </View>
-                    {/*<Text style={style.inputTextTaskList}>status: {this.props.priority}</Text> */}
+
+                    <View>
+                        <Text style={style.inputTextTaskList}>° Status:</Text>
+                        <Text style={this.getStats()}>{this.props.stats}</Text>
+                    </View>
 
                     <View style={style.taskListViewButton}>
                         <TouchableOpacity
                             style={style.taskButton1}
-                            /*onPress={() => this.props.updTask(this.props.item)}*/>
+                            onPress={() => this.props.updateTask(this.props.item)}>
                             <Icon name="check" size={25} color='#fff' />
                         </TouchableOpacity>
 
@@ -69,7 +109,7 @@ const style = StyleSheet.create({
     },
 
     inputTextTaskList: {
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'left',
         color: '#202020',
@@ -98,7 +138,8 @@ const style = StyleSheet.create({
         borderColor: '#fff',
         borderRadius: 20,
         width: 90,
-        height: 60
+        height: 60,
+        marginTop: 5
     },
 
     taskButton2: {
@@ -109,7 +150,8 @@ const style = StyleSheet.create({
         borderColor: '#fff',
         borderRadius: 20,
         width: 90,
-        height: 60
+        height: 60,
+        marginTop: 5
     },
 
     taskListViewButton: {

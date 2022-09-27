@@ -33,7 +33,7 @@ export default class ItemDatabase {
                         console.log("O Banco de dados não está pronto... Criando tabela");
                         db.transaction((tx) => {
                             // aqui a tabela é criada, se ainda não existir
-                            tx.executeSql('CREATE TABLE IF NOT EXISTS TaskListItem (id INTEGER PRIMARY KEY AUTOINCREMENT, description varchar(30), endDate varchar(30), priority INTEGER)');
+                            tx.executeSql('CREATE TABLE IF NOT EXISTS TaskListItem (id INTEGER PRIMARY KEY AUTOINCREMENT, description varchar(30), endDate varchar(30), priority varchar(30), stats INTEGER)');
                         }).then(() => {
                             console.log("Tabela criada com Sucesso");
                         }).catch(error => {
@@ -74,8 +74,8 @@ export default class ItemDatabase {
                         var len = results.rows.length;
                         for (let i = 0; i < len; i++) {
                             let row = results.rows.item(i);
-                            const { id, description, endDate, priority } = row;
-                            lista.push({ id, description, endDate, priority });
+                            const { id, description, endDate, priority, stats } = row;
+                            lista.push({ id, description, endDate, priority, stats });
                         }
                         console.log(lista);
                         resolve(lista);
@@ -97,7 +97,7 @@ export default class ItemDatabase {
             this.Conectar().then((db) => {
                 db.transaction((tx) => {
                     //Query SQL para inserir um novo registro 
-                    tx.executeSql('INSERT INTO TaskListItem (description, endDate, priority) VALUES (?, ?, ?)', [item.description, item.endDate, item.priority]).then(([tx, results]) => {
+                    tx.executeSql('INSERT INTO TaskListItem (description, endDate, priority, stats) VALUES (?, ?, ?, ?)', [item.description, item.endDate, item.priority,item.stats]).then(([tx, results]) => {
                         resolve(results);
                     });
                 }).then((result) => {
@@ -112,11 +112,13 @@ export default class ItemDatabase {
     }
 
     Atualizar(item) {   //**** CRUD => UPDATE - aqui a tabela é atualizada *****/
+        let newStats = 'Concluído'
+        this.stats = {newStats}
         return new Promise((resolve) => {
             this.Conectar().then((db) => {
                 db.transaction((tx) => {
                     //Query SQL para atualizar um registro no banco        
-                    tx.executeSql('UPDATE Item SET quantidade = ? WHERE id = ?', [item.quantidade - 1, item.id]).then(([tx, results]) => {
+                    tx.executeSql('UPDATE TaskListItem SET stats = ? WHERE id = ?', [newStats, item.id]).then(([tx, results]) => {
                         resolve(results);
                     });
                 }).then((result) => {

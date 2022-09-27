@@ -18,6 +18,7 @@ class TaskComponent extends Component {
         this.state = {
             description: '',
             endDate: '',
+            stats: '',
             priority: '',
             list: []
         }
@@ -25,8 +26,8 @@ class TaskComponent extends Component {
         this.ListTaskItem();
     }
 
-    RegisterTask = (description, endDate, priority) => {
-        const newTask = new TaskListItem(description, endDate, priority);
+    RegisterTask = (description, endDate, priority, stats) => {
+        const newTask = new TaskListItem(description, endDate, priority, stats);
         const dataBase = new ItemDatabase();
         dataBase.Inserir(newTask);
         this.ListTaskItem();
@@ -40,6 +41,12 @@ class TaskComponent extends Component {
                 this.setState({ list: completeListTasks })
             }
         )
+    }
+
+    UpdateTask = (item) => {
+        const dataBase = new ItemDatabase();
+        dataBase.Atualizar(item);
+        this.ListTaskItem();
     }
 
     DeleteTask = (id) => {
@@ -57,17 +64,16 @@ class TaskComponent extends Component {
                     <View style={style.tasksView}>
                         <Text style={style.tasksTextTitle}>Adicione uma nova tarefa </Text>
                         <TextInput style={style.inputTextTasks} placeholderTextColor='white' placeholder="Descrição:" onChangeText={(typeValue) => { this.setState({ description: typeValue }) }}></TextInput>
-                        <TextInput style={style.inputTextTasks} placeholderTextColor='white' placeholder="Data de término:" onChangeText={(typeValue) => { this.setState({ endDate: typeValue }) }}></TextInput>
+                        <TextInput style={style.inputTextTasks} placeholderTextColor='white' placeholder="Data de término: (dd/mm/yyyy)" onChangeText={(typeValue) => { this.setState({ endDate: typeValue }) }}></TextInput>
                         <TextInput style={style.inputTextTasks} placeholderTextColor='white' placeholder="Prioridade:" onChangeText={(typeValue) => { this.setState({ priority: typeValue }) }}></TextInput>
                         <View style={style.taskButtonView}>
                             <TouchableOpacity
-                                onPress={() => this.RegisterTask(this.state.description, this.state.endDate, this.state.priority)}
+                                onPress={() => this.RegisterTask(this.state.description, this.state.endDate, this.state.priority, this.state.stats)}
                                 style={style.taskButton}>
                                 <Icon name="text-document" size={25} color='#fff' />
                                 <Text style={style.taskButtonText}>Adicionar Tarefa</Text>
                             </TouchableOpacity>
                         </View>
-                        {/*<TextInput style={style.inputTextTasks} placeholder="Status:"></TextInput>*/}
 
                     </View>
 
@@ -81,7 +87,9 @@ class TaskComponent extends Component {
                                     description={listTaskRegister.description}
                                     endDate={listTaskRegister.endDate}
                                     priority={listTaskRegister.priority}
+                                    stats={listTaskRegister.stats}
                                     delTask={this.DeleteTask}
+                                    updateTask={this.UpdateTask}
                                 />
                             ))
                         }
@@ -113,7 +121,7 @@ const style = StyleSheet.create({
 
     tasksView: {
         backgroundColor: '#12122b',
-        marginTop: 15,
+        marginTop: 20,
         alignItems: 'center',
         height: 300,
         width: '95%',
