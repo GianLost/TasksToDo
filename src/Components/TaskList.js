@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import  Icon  from "react-native-vector-icons/Entypo";
+import Icon from "react-native-vector-icons/Ionicons";
 import {
     StyleSheet,
     TouchableOpacity,
@@ -11,37 +11,43 @@ class TaskList extends Component {
 
     getStats() {
         let endDateSplit = this.props.endDate.split('/');
-        let endDatePart = new Date(endDateSplit[2], endDateSplit[1] - 1 , endDateSplit[0]);
-        
-        if (this.props.stats == '' &&  endDatePart < new Date()) {
+        let endDatePart = new Date(endDateSplit[2], endDateSplit[1] - 1, endDateSplit[0]);
+
+        if (this.props.stats == '' && endDatePart < new Date()) {
             this.props.stats = 'Atrasada'
-            return { color: 'red',
-            fontSize: 17,
-            marginLeft: 15,
-            borderBottomWidth: 2,
-            borderBottomColor: '#fff',
-            padding: 3}
-        }else if(this.props.stats == '' && endDatePart > new Date()){
+            return {
+                color: 'red',
+                fontSize: 22,
+                marginLeft: 15,
+                borderBottomWidth: 2,
+                borderBottomColor: '#fff',
+                borderRadius: 10,
+                padding: 3
+            }
+        } else if (this.props.stats == '' && endDatePart > new Date()) {
             this.props.stats = 'Pendente'
-            return { 
-                color: '#000',
-                fontSize: 17,
-                textShadowColor: '#fff',
+            return {
+                color: '#fff',
+                fontSize: 22,
+                textShadowColor: '#000',
                 textShadowRadius: 10,
                 marginLeft: 15,
                 borderBottomWidth: 2,
                 borderBottomColor: '#fff',
-                padding: 3}
-        }else if (this.props.stats != 'Atrasada' || this.props.stats != 'Pendente') {
-            return { 
+                borderRadius: 10,
+                padding: 3
+            }
+        } else if (this.props.stats != 'Atrasada' || this.props.stats != 'Pendente') {
+            return {
                 color: 'green',
-                fontSize: 17,
+                fontSize: 22,
                 textShadowColor: '#000',
                 textShadowRadius: 5,
                 marginLeft: 15,
                 borderBottomWidth: 2,
                 borderBottomColor: '#fff',
-                padding: 3}
+                padding: 3
+            }
         }
     }
 
@@ -51,22 +57,23 @@ class TaskList extends Component {
                 <View style={style.tasksView}>
 
                     <View style={{ flexDirection: 'column' }}>
-                        <Text style={style.inputTextTaskList}>° À Fazer:</Text>
+
+                        <Text style={style.inputTextTaskList}><Icon name="md-book" size={20} color='#fff' />   À Fazer:</Text>
                         <Text style={style.TextTaskList}>{this.props.description}</Text>
                     </View>
 
                     <View style={{ flexDirection: 'column' }}>
-                        <Text style={style.inputTextTaskList}>° Prazo:</Text>
+                        <Text style={style.inputTextTaskList}><Icon name="alarm-sharp" size={20} color='#fff' />   Prazo:</Text>
                         <Text style={style.TextTaskList}>{this.props.endDate}</Text>
                     </View>
 
                     <View>
-                        <Text style={style.inputTextTaskList}>° Prioridade:</Text>
+                        <Text style={style.inputTextTaskList}><Icon name="speedometer-sharp" size={20} color='#fff' />   Prioridade:</Text>
                         <Text style={style.TextTaskList}>{this.props.priority}</Text>
                     </View>
 
                     <View>
-                        <Text style={style.inputTextTaskList}>° Status:</Text>
+                        <Text style={style.inputTextTaskList}><Icon name="ios-stats-chart" size={20} color='#fff' />   Status:</Text>
                         <Text style={this.getStats()}>{this.props.stats}</Text>
                     </View>
 
@@ -74,13 +81,13 @@ class TaskList extends Component {
                         <TouchableOpacity
                             style={style.taskButton1}
                             onPress={() => this.props.updateTask(this.props.item)}>
-                            <Icon name="check" size={25} color='#fff' />
+                            <Icon name="checkmark-done" size={25} color='#fff' />
                         </TouchableOpacity>
 
                         <TouchableOpacity
                             style={style.taskButton2}
                             onPress={() => this.props.delTask(this.props.id)}>
-                            <Icon name="trash" size={25} color='#fff' />
+                            <Icon name="trash-outline" size={25} color='#fff' />
                         </TouchableOpacity>
                     </View>
 
@@ -94,15 +101,14 @@ class TaskList extends Component {
 const style = StyleSheet.create({
     tasksView: {
         justifyContent: 'space-around',
-        borderWidth: 2,
-        borderColor: '#fff',
+        backgroundColor: '#2D4778',
         borderRadius: 10,
         width: '90%',
         maxHeight: '100%',
         minHeight: '50%',
         marginTop: 10,
         marginBottom: '50%',
-        height: 200,
+        height: 250,
         padding: 5,
 
 
@@ -112,20 +118,22 @@ const style = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'left',
-        color: '#202020',
-        textShadowColor: '#fff',
+        color: '#fff',
+        padding: 3,
+        textShadowColor: '#000',
         textShadowRadius: 5,
         marginTop: 10,
-        marginLeft: 8
+        marginLeft: 12
     },
 
     TextTaskList: {
         color: '#fff',
-        fontSize: 17,
+        fontSize: 22,
         textShadowColor: '#000',
-        textShadowRadius: 10,
+        textShadowRadius: 5,
         marginLeft: 15,
         borderBottomWidth: 2,
+        borderRadius: 10,
         borderBottomColor: '#fff',
         padding: 3
     },
@@ -134,10 +142,9 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        borderWidth: 2,
-        borderColor: '#fff',
-        borderRadius: 20,
-        width: 90,
+        backgroundColor: '#88ED24',
+        borderRadius: 100,
+        width: 60,
         height: 60,
         marginTop: 5
     },
@@ -146,10 +153,9 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        borderWidth: 2,
-        borderColor: '#fff',
-        borderRadius: 20,
-        width: 90,
+        backgroundColor: '#F51D1D',
+        borderRadius: 100,
+        width: 60,
         height: 60,
         marginTop: 5
     },

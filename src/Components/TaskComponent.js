@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Icon from 'react-native-vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/AntDesign';
 import ItemDatabase from "../DataBase/ItemDatabase";
 import TaskListItem from "../Models/TaskListItem";
 import TaskList from "../Components/TaskList";
@@ -62,7 +62,7 @@ class TaskComponent extends Component {
                 <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 150 }}>
 
                     <View style={style.tasksView}>
-                        <Text style={style.tasksTextTitle}>Adicione uma nova tarefa </Text>
+                        <Text style={style.tasksTextTitle}>Crie sua Tarefa</Text>
                         <TextInput style={style.inputTextTasks} placeholderTextColor='white' placeholder="Descrição:" onChangeText={(typeValue) => { this.setState({ description: typeValue }) }}></TextInput>
                         <TextInput style={style.inputTextTasks} placeholderTextColor='white' placeholder="Data de término: (dd/mm/yyyy)" onChangeText={(typeValue) => { this.setState({ endDate: typeValue }) }}></TextInput>
                         <TextInput style={style.inputTextTasks} placeholderTextColor='white' placeholder="Prioridade:" onChangeText={(typeValue) => { this.setState({ priority: typeValue }) }}></TextInput>
@@ -70,7 +70,7 @@ class TaskComponent extends Component {
                             <TouchableOpacity
                                 onPress={() => this.RegisterTask(this.state.description, this.state.endDate, this.state.priority, this.state.stats)}
                                 style={style.taskButton}>
-                                <Icon name="text-document" size={25} color='#fff' />
+                                <Icon name="edit" size={25} color='#fff' style={{ marginRight: 5 }} />
                                 <Text style={style.taskButtonText}>Adicionar Tarefa</Text>
                             </TouchableOpacity>
                         </View>
@@ -113,6 +113,7 @@ const style = StyleSheet.create({
         width: '98%',
         height: 40,
         color: '#fff',
+        fontSize: 18,
         borderBottomWidth: 3,
         borderBottomColor: '#fff',
         borderRadius: 10,
@@ -142,8 +143,7 @@ const style = StyleSheet.create({
     },
 
     taskButtonView: {
-        marginTop: 10,
-        marginLeft: 170
+        marginTop: 20,
     },
 
     taskButtonText: {
@@ -154,12 +154,12 @@ const style = StyleSheet.create({
 
     tasksListTitle: {
 
-        textShadowColor: '#000',
+        textShadowColor: '#12122b',
         textShadowRadius: 5,
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#fff',
+        color: '#000',
         marginTop: 10
     }
 })

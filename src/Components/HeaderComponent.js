@@ -22,7 +22,7 @@ class HeaderComponent extends Component {
 const style = StyleSheet.create({
     headerComponentView: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
         padding: 5,
         backgroundColor: '#12122b',
         alignItems: 'center',

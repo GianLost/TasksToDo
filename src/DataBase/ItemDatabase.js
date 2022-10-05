@@ -97,7 +97,7 @@ export default class ItemDatabase {
             this.Conectar().then((db) => {
                 db.transaction((tx) => {
                     //Query SQL para inserir um novo registro 
-                    tx.executeSql('INSERT INTO TaskListItem (description, endDate, priority, stats) VALUES (?, ?, ?, ?)', [item.description, item.endDate, item.priority,item.stats]).then(([tx, results]) => {
+                    tx.executeSql('INSERT INTO TaskListItem (description, endDate, priority, stats) VALUES (?, ?, ?, ?)', [item.description, item.endDate, item.priority, item.stats]).then(([tx, results]) => {
                         resolve(results);
                     });
                 }).then((result) => {
@@ -113,7 +113,7 @@ export default class ItemDatabase {
 
     Atualizar(item) {   //**** CRUD => UPDATE - aqui a tabela é atualizada *****/
         let newStats = 'Concluído'
-        this.stats = {newStats}
+        this.stats = { newStats }
         return new Promise((resolve) => {
             this.Conectar().then((db) => {
                 db.transaction((tx) => {
