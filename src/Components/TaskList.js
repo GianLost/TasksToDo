@@ -17,8 +17,8 @@ class TaskList extends Component {
             this.props.stats = 'Atrasada'
             return {
                 color: 'red',
-                fontSize: 22,
-                marginLeft: 15,
+                fontSize: 20,
+                marginLeft: 5,
                 borderBottomWidth: 2,
                 borderBottomColor: '#fff',
                 borderRadius: 10,
@@ -28,10 +28,10 @@ class TaskList extends Component {
             this.props.stats = 'Pendente'
             return {
                 color: '#fff',
-                fontSize: 22,
+                fontSize: 20,
                 textShadowColor: '#000',
                 textShadowRadius: 10,
-                marginLeft: 15,
+                marginLeft: 5,
                 borderBottomWidth: 2,
                 borderBottomColor: '#fff',
                 borderRadius: 10,
@@ -40,12 +40,13 @@ class TaskList extends Component {
         } else if (this.props.stats != 'Atrasada' || this.props.stats != 'Pendente') {
             return {
                 color: 'green',
-                fontSize: 22,
+                fontSize: 20,
                 textShadowColor: '#000',
                 textShadowRadius: 5,
-                marginLeft: 15,
+                marginLeft: 5,
                 borderBottomWidth: 2,
                 borderBottomColor: '#fff',
+                borderRadius: 10,
                 padding: 3
             }
         }
@@ -129,7 +130,7 @@ const style = StyleSheet.create({
         textAlign: 'justify',
         textShadowColor: '#fff',
         textShadowRadius: 5,
-        marginLeft: 15,
+        marginLeft: 5,
         borderBottomWidth: 2,
         borderRadius: 10,
         borderBottomColor: '#fff',
