@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Ionicons';
 import ItemDatabase from "../DataBase/ItemDatabase";
 import TaskListItem from "../Models/TaskListItem";
 import TaskList from "../Components/TaskList";
@@ -70,15 +70,14 @@ class TaskComponent extends Component {
                             <TouchableOpacity
                                 onPress={() => this.RegisterTask(this.state.description, this.state.endDate, this.state.priority, this.state.stats)}
                                 style={style.taskButton}>
-                                <Icon name="edit" size={25} color='#fff' style={{ marginRight: 5 }} />
-                                <Text style={style.taskButtonText}>Adicionar Tarefa</Text>
+                                <Icon name="add-circle-sharp" size={55} color='#fff' style={{marginLeft: 2, marginTop: -1.5}} />
                             </TouchableOpacity>
                         </View>
 
                     </View>
 
                     <View style={{ width: '100%', height: '100%', alignItems: 'center' }}>
-                        <Text style={style.tasksListTitle}>Lista de tarefas:</Text>
+                        <Text style={style.tasksListTitle}>Lista de tarefas :</Text>
                         {
                             this.state.list.map(listTaskRegister => (
                                 <TaskList
@@ -122,44 +121,36 @@ const style = StyleSheet.create({
 
     tasksView: {
         backgroundColor: '#12122b',
-        marginTop: 20,
+        marginTop: 50,
         alignItems: 'center',
         height: 300,
-        width: '95%',
+        width: '100%',
         padding: 10,
-        borderRadius: 18,
-        opacity: 0.93
     },
 
     taskButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 5,
-        width: 150,
-        height: 50,
-        borderWidth: 2,
-        borderColor: '#fff',
-        borderRadius: 10
+        
+        width: 60,
+        height: 60,
+        marginTop: 15,
+        borderWidth: 2, 
+        borderColor: '#fff', 
+        borderRadius: 60
     },
 
     taskButtonView: {
-        marginTop: 20,
-    },
-
-    taskButtonText: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        color: '#fff'
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: 200
     },
 
     tasksListTitle: {
-
         textShadowColor: '#12122b',
-        textShadowRadius: 5,
+        textShadowRadius: 10,
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#000',
+        color: '#fff',
         marginTop: 10
     }
 })

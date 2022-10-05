@@ -101,14 +101,14 @@ class TaskList extends Component {
 const style = StyleSheet.create({
     tasksView: {
         justifyContent: 'space-around',
-        backgroundColor: '#2D4778',
+        backgroundColor: '#12122b',
         borderRadius: 10,
         width: '90%',
         maxHeight: '100%',
         minHeight: '50%',
         marginTop: 10,
         marginBottom: '50%',
-        height: 250,
+        height: 280,
         padding: 5,
 
 
@@ -120,16 +120,14 @@ const style = StyleSheet.create({
         textAlign: 'left',
         color: '#fff',
         padding: 3,
-        textShadowColor: '#000',
-        textShadowRadius: 5,
-        marginTop: 10,
         marginLeft: 12
     },
 
     TextTaskList: {
         color: '#fff',
-        fontSize: 22,
-        textShadowColor: '#000',
+        fontSize: 17,
+        textAlign: 'justify',
+        textShadowColor: '#fff',
         textShadowRadius: 5,
         marginLeft: 15,
         borderBottomWidth: 2,
@@ -142,22 +140,24 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
+        borderColor: '#fff',
+        borderWidth: 2,
         backgroundColor: '#88ED24',
         borderRadius: 100,
         width: 60,
         height: 60,
-        marginTop: 5
     },
 
     taskButton2: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
+        borderColor: '#fff',
+        borderWidth: 2,
         backgroundColor: '#F51D1D',
         borderRadius: 100,
         width: 60,
         height: 60,
-        marginTop: 5
     },
 
     taskListViewButton: {
